@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cores HSL personalizadas exatas */
+:root {
+  --bg-primary: hsl(220, 15%, 5%);        /* Azul muito escuro (quase preto) */
+  --bg-secondary: hsl(220, 15%, 8%);      /* Azul escuro mais claro */
+  --bg-cards: hsl(220, 15%, 12%);         /* Azul para cartas e elementos secundários */
+  --bg-borders: hsl(220, 15%, 18%);       /* Azul para bordas e entradas */
+  --color-primary: hsl(197, 100%, 50%);   /* Azul ciano brilhante (cor primária) */
+  --gradient-bg: linear-gradient(135deg, hsl(220, 15%, 5%), hsl(220, 15%, 8%));
+}
+
+/* Aplicar cores personalizadas */
+html, body {
+  background: var(--gradient-bg) !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Classes customizadas HSL */
+.bg-custom-primary { background-color: var(--bg-primary); }
+.bg-custom-secondary { background-color: var(--bg-secondary); }
+.bg-custom-cards { background-color: var(--bg-cards); }
+.bg-custom-borders { background-color: var(--bg-borders); }
+.text-custom-primary { color: var(--color-primary); }
+.border-custom { border-color: var(--bg-borders); }
+
+/* Gradient background class */
+.gradient-bg {
+  background: var(--gradient-bg);
+}
+
+/* Custom scrollbar com cores HSL */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, var(--color-primary), hsl(197, 100%, 60%));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, hsl(197, 100%, 45%), hsl(197, 100%, 65%));
+}
+
+/* Selection com cores HSL */
+::selection {
+  background: hsla(197, 100%, 50%, 0.3);
+  color: white;
+}
+
+/* Text gradients */
+.gradient-text {
+  background: linear-gradient(45deg, var(--color-primary), hsl(197, 100%, 70%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cards com estilo HSL personalizado */
+.custom-card {
+  background: var(--bg-cards);
+  border: 1px solid var(--bg-borders);
+  transition: all 0.3s ease;
+}
+
+.custom-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px hsla(197, 100%, 50%, 0.1);
+}
+
+/* Inputs personalizados com HSL */
+.custom-input {
+  background: var(--bg-primary);
+  border: 1px solid var(--bg-borders);
+  color: var(--color-primary);
+}
+
+.custom-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px hsla(197, 100%, 50%, 0.2);
+}
+
+.custom-input::placeholder {
+  color: hsl(197, 100%, 70%);
+}
+
+/* Animações */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  background: var(--gradient-bg);
+}
+
+/* Classes utilitárias para Tailwind com cores HSL */
+.bg-hsl-primary { background-color: hsl(220, 15%, 5%); }
+.bg-hsl-secondary { background-color: hsl(220, 15%, 8%); }
+.bg-hsl-cards { background-color: hsl(220, 15%, 12%); }
+.bg-hsl-borders { background-color: hsl(220, 15%, 18%); }
+.text-hsl-primary { color: hsl(197, 100%, 50%); }
+.border-hsl { border-color: hsl(220, 15%, 18%); }
+
+/* Efeitos especiais com HSL */
+.glow-hsl {
+  box-shadow: 0 0 20px hsla(197, 100%, 50%, 0.3);
+}
+
+.glow-hsl:hover {
+  box-shadow: 0 0 30px hsla(197, 100%, 50%, 0.5);
+}
