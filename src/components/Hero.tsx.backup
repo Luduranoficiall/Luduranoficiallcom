@@ -19,10 +19,7 @@ const Hero: React.FC = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in-up">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight" style={{ color: 'hsl(197, 100%, 50%)' }}>
-              Desenvolvedor Full-Stack | Engenheiro de Software | Especialista em IA Aplicada
-            </h1>
+          <div className="animate-fade-in-up">
             <div className="flex items-center space-x-2 mb-6">
               <span className="bg-gradient-to-r from-green-500 to-emerald-400 text-black px-4 py-2 rounded-full text-sm font-bold">
                 ✨ DISPONÍVEL AGORA
