@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} | Blog{% endblock %}
+
+{% block extra_css %}
+<style>
+    .post-hero {
+        padding: 80px 0 40px;
+        text-align: center;
+    }
+    
+    .post-hero h1 {
+        font-size: 56px;
+        font-weight: 900;
+        margin-bottom: 30px;
+        line-height: 1.2;
+    }
+    
+    .post-meta {
+        font-size: 18px;
+        color: var(--cor-texto-secundario);
+        margin-bottom: 50px;
+    }
+    
+    .post-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 0;
+    }
+    
+    .post-content p {
+        font-size: 20px;
+        line-height: 1.8;
+        color: var(--cor-texto);
+        margin-bottom: 30px;
+    }
+    
+    .post-content h2 {
+        font-size: 36px;
+        margin: 50px 0 25px;
+        color: var(--cor-principal);
+    }
+    
+    .post-content h3 {
+        font-size: 28px;
+        margin: 40px 0 20px;
+        color: var(--cor-principal);
+    }
+    
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        color: var(--cor-principal);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    
+    .back-link:hover {
+        text-shadow: 0 0 10px var(--cor-principal);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="container">
+    <a href="{{ url_for('blog') }}" class="back-link">
+        <i class="fas fa-arrow-left"></i> VOLTAR AO BLOG
+    </a>
+</section>
+
+<section class="post-hero">
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <div class="post-meta">
+            <i class="fas fa-calendar"></i> {{ post.created_at.strftime('%d de %B de %Y') }}
+            <span style="margin: 0 20px;">•</span>
+            <i class="fas fa-user"></i> Admin
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="card post-content">
+        {{ post.content|safe }}
+    </div>
+</section>
+
+<section class="container" style="text-align: center; padding: 60px 0;">
+    <h2 style="font-size: 42px; margin-bottom: 30px;">💬 Gostou do conteúdo?</h2>
+    <p style="font-size: 20px; color: var(--cor-texto-secundario); margin-bottom: 40px;">
+        Entre em contato para discutir seu projeto ou agendar uma consulta
+    </p>
+    <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">
+            <i class="fas fa-envelope"></i> CONTATO
+        </a>
+        <a href="{{ url_for('schedule') }}" class="btn btn-secondary">
+            <i class="fas fa-calendar"></i> AGENDAR
+        </a>
+    </div>
+</section>
+{% endblock %}

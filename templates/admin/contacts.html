@@ -1,0 +1,60 @@
+{% extends "admin/dashboard.html" %}
+
+{% block title %}Mensagens | Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <div class="container">
+        <h1>📨 GERENCIAR MENSAGENS</h1>
+        <p style="font-size: 18px; color: var(--cor-texto-secundario);">Total: <strong style="color: var(--cor-principal);">{{ contacts|length }}</strong> mensagens</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="recent-list">
+        {% for contact in contacts %}
+        <div class="card recent-item">
+            <div class="recent-item-header">
+                <div>
+                    <div class="recent-item-title">{{ contact.name }}</div>
+                    <div style="color: var(--cor-principal); font-size: 14px; margin-top: 5px;">
+                        <i class="fas fa-envelope"></i> <a href="mailto:{{ contact.email }}" style="color: var(--cor-principal); text-decoration: none;">{{ contact.email }}</a>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    {% if not contact.read %}
+                    <span class="badge badge-new">NOVA</span>
+                    {% endif %}
+                    <div class="recent-item-date" style="margin-top: 10px;">
+                        <i class="fas fa-clock"></i> {{ contact.created_at.strftime('%d/%m/%Y às %H:%M') }}
+                    </div>
+                </div>
+            </div>
+            <div class="recent-item-content" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0, 217, 255, 0.2);">
+                {{ contact.message }}
+            </div>
+            <div style="margin-top: 20px; display: flex; gap: 15px;">
+                {% if not contact.read %}
+                <form method="POST" action="{{ url_for('mark_contact_read', contact_id=contact.id) }}" style="display: inline;">
+                    <button type="submit" class="btn btn-secondary" style="padding: 12px 25px;">
+                        <i class="fas fa-check"></i> Marcar como Lida
+                    </button>
+                </form>
+                {% endif %}
+                <form method="POST" action="{{ url_for('delete_contact', contact_id=contact.id) }}" style="display: inline;">
+                    <button type="submit" class="btn btn-secondary logout-btn" style="padding: 12px 25px;" onclick="return confirm('Tem certeza que deseja excluir esta mensagem?')">
+                        <i class="fas fa-trash"></i> Excluir
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="card" style="padding: 80px; text-align: center;">
+            <i class="fas fa-inbox" style="font-size: 80px; color: var(--cor-principal); opacity: 0.5; margin-bottom: 30px;"></i>
+            <h2 style="font-size: 32px; margin-bottom: 15px;">Nenhuma Mensagem</h2>
+            <p style="color: var(--cor-texto-secundario); font-size: 18px;">As mensagens dos clientes aparecerão aqui</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

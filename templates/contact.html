@@ -1,0 +1,542 @@
+{% extends "base.html" %}<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+{% block title %}Contato | Desenvolvedor Full-Stack Elite{% endblock %}<head>
+
+    <meta charset="UTF-8">
+
+{% block extra_css %}    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>    <title>Contato | Desenvolvedor Full-Stack</title>
+
+    .contact-hero {    <style>
+
+        padding: 80px 0 60px;        * {
+
+        text-align: center;            margin: 0;
+
+    }            padding: 0;
+
+                box-sizing: border-box;
+
+    .contact-hero h1 {        }
+
+        font-size: 56px;        body {
+
+        font-weight: 900;            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        margin-bottom: 20px;            line-height: 1.6;
+
+    }            color: #333;
+
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    .contact-container {            min-height: 100vh;
+
+        display: grid;        }
+
+        grid-template-columns: 1fr 1fr;        .container {
+
+        gap: 60px;            max-width: 1200px;
+
+        padding: 60px 0;            margin: 0 auto;
+
+    }            padding: 20px;
+
+            }
+
+    .contact-form {        header {
+
+        background: var(--cor-fundo-card);            background: rgba(255, 255, 255, 0.95);
+
+        border: 2px solid rgba(0, 217, 255, 0.3);            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        border-radius: 20px;            position: sticky;
+
+        padding: 50px;            top: 0;
+
+    }            z-index: 1000;
+
+            }
+
+    .form-group {        nav {
+
+        margin-bottom: 30px;            display: flex;
+
+    }            justify-content: center;
+
+                gap: 30px;
+
+    .form-group label {            padding: 20px;
+
+        display: block;        }
+
+        margin-bottom: 10px;        nav a {
+
+        color: var(--cor-principal);            color: #667eea;
+
+        font-weight: 700;            text-decoration: none;
+
+        font-size: 16px;            font-weight: 600;
+
+        text-transform: uppercase;            font-size: 18px;
+
+        letter-spacing: 1px;            transition: all 0.3s ease;
+
+    }        }
+
+            nav a:hover {
+
+    .form-group input,            color: #764ba2;
+
+    .form-group textarea {            transform: translateY(-2px);
+
+        width: 100%;        }
+
+        padding: 18px 25px;        .page-title {
+
+        background: var(--cor-fundo);            background: white;
+
+        border: 2px solid rgba(0, 217, 255, 0.3);            border-radius: 15px;
+
+        border-radius: 10px;            padding: 40px;
+
+        color: var(--cor-texto);            margin: 40px 0 30px 0;
+
+        font-size: 16px;            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+
+        font-family: inherit;            text-align: center;
+
+        transition: all 0.3s ease;        }
+
+    }        .page-title h1 {
+
+                font-size: 48px;
+
+    .form-group input:focus,            color: #667eea;
+
+    .form-group textarea:focus {            margin-bottom: 10px;
+
+        outline: none;        }
+
+        border-color: var(--cor-principal);        .page-title p {
+
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);            font-size: 20px;
+
+    }            color: #666;
+
+            }
+
+    .form-group textarea {        .contact-section {
+
+        resize: vertical;            display: grid;
+
+        min-height: 150px;            grid-template-columns: 1fr 1fr;
+
+    }            gap: 30px;
+
+                margin: 30px 0;
+
+    .form-group input::placeholder,        }
+
+    .form-group textarea::placeholder {        .contact-form {
+
+        color: var(--cor-texto-secundario);            background: white;
+
+    }            border-radius: 15px;
+
+                padding: 40px;
+
+    .contact-info {            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+        display: flex;        }
+
+        flex-direction: column;        .contact-form h2 {
+
+        gap: 40px;            color: #667eea;
+
+    }            font-size: 28px;
+
+                margin-bottom: 20px;
+
+    .info-card {        }
+
+        background: var(--cor-fundo-card);        .form-group {
+
+        border: 2px solid rgba(0, 217, 255, 0.3);            margin-bottom: 20px;
+
+        border-radius: 20px;        }
+
+        padding: 40px;        .form-group label {
+
+        transition: all 0.3s ease;            display: block;
+
+    }            color: #555;
+
+                font-weight: 600;
+
+    .info-card:hover {            margin-bottom: 8px;
+
+        border-color: var(--cor-principal);            font-size: 16px;
+
+        transform: translateY(-5px);        }
+
+        box-shadow: 0 20px 50px rgba(0, 217, 255, 0.3);        .form-group input,
+
+    }        .form-group textarea {
+
+                width: 100%;
+
+    .info-card i {            padding: 12px 15px;
+
+        font-size: 48px;            border: 2px solid #e0e0e0;
+
+        color: var(--cor-principal);            border-radius: 8px;
+
+        margin-bottom: 20px;            font-size: 16px;
+
+        display: block;            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    }            transition: all 0.3s ease;
+
+            }
+
+    .info-card h3 {        .form-group input:focus,
+
+        font-size: 24px;        .form-group textarea:focus {
+
+        margin-bottom: 15px;            outline: none;
+
+        color: var(--cor-principal);            border-color: #667eea;
+
+    }            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+
+            }
+
+    .info-card p {        .form-group textarea {
+
+        color: var(--cor-texto-secundario);            min-height: 150px;
+
+        font-size: 18px;            resize: vertical;
+
+        line-height: 1.6;        }
+
+    }        .submit-button {
+
+                width: 100%;
+
+    .info-card a {            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        color: var(--cor-principal);            color: white;
+
+        text-decoration: none;            padding: 15px;
+
+        font-weight: 700;            border: none;
+
+        transition: all 0.3s ease;            border-radius: 8px;
+
+    }            font-size: 18px;
+
+                font-weight: 600;
+
+    .info-card a:hover {            cursor: pointer;
+
+        text-shadow: 0 0 10px var(--cor-principal);            transition: all 0.3s ease;
+
+    }            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+
+            }
+
+    .whatsapp-btn {        .submit-button:hover {
+
+        background: #25D366 !important;            transform: translateY(-2px);
+
+        border-color: #25D366 !important;            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+
+        box-shadow: 0 0 20px rgba(37, 211, 102, 0.5) !important;        }
+
+        font-size: 20px;        .contact-info {
+
+        padding: 20px 40px;            background: white;
+
+        display: inline-flex;            border-radius: 15px;
+
+        align-items: center;            padding: 40px;
+
+        gap: 15px;            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+        margin-top: 20px;        }
+
+    }        .contact-info h2 {
+
+                color: #667eea;
+
+    .whatsapp-btn:hover {            font-size: 28px;
+
+        box-shadow: 0 0 30px rgba(37, 211, 102, 0.8) !important;            margin-bottom: 20px;
+
+    }        }
+
+            .info-item {
+
+    @media (max-width: 968px) {            margin-bottom: 30px;
+
+        .contact-container { grid-template-columns: 1fr; }            padding: 20px;
+
+        .contact-hero h1 { font-size: 40px; }            background: #f8f9ff;
+
+    }            border-radius: 10px;
+
+</style>            border-left: 4px solid #667eea;
+
+{% endblock %}        }
+
+        .info-item h3 {
+
+{% block content %}            color: #667eea;
+
+<section class="contact-hero">            font-size: 20px;
+
+    <div class="container">            margin-bottom: 10px;
+
+        <h1>📧 VAMOS CONVERSAR</h1>            display: flex;
+
+        <p style="font-size: 22px; color: var(--cor-texto-secundario);">            align-items: center;
+
+            Estou pronto para transformar sua ideia em realidade            gap: 10px;
+
+        </p>        }
+
+    </div>        .info-item p {
+
+</section>            color: #666;
+
+            font-size: 16px;
+
+<section class="container">            line-height: 1.8;
+
+    <div class="contact-container">        }
+
+        <div>        .info-item a {
+
+            <div class="contact-form">            color: #667eea;
+
+                <h2 style="margin-bottom: 30px; font-size: 32px;">Envie sua Mensagem</h2>            text-decoration: none;
+
+                <form method="POST" action="{{ url_for('contact') }}">            font-weight: 600;
+
+                    <div class="form-group">            transition: color 0.3s ease;
+
+                        <label for="name">SEU NOME</label>        }
+
+                        <input type="text" id="name" name="name" placeholder="Como posso te chamar?" required>        .info-item a:hover {
+
+                    </div>            color: #764ba2;
+
+                            }
+
+                    <div class="form-group">        .whatsapp-button {
+
+                        <label for="email">SEU E-MAIL</label>            display: block;
+
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>            background: #25D366;
+
+                    </div>            color: white;
+
+                                padding: 15px 30px;
+
+                    <div class="form-group">            border-radius: 30px;
+
+                        <label for="message">SUA MENSAGEM</label>            text-decoration: none;
+
+                        <textarea id="message" name="message" placeholder="Conte-me sobre seu projeto..." required></textarea>            font-weight: 600;
+
+                    </div>            font-size: 18px;
+
+                                text-align: center;
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 18px; padding: 20px;">            margin-top: 20px;
+
+                        <i class="fas fa-paper-plane"></i> ENVIAR MENSAGEM            transition: all 0.3s ease;
+
+                    </button>            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+
+                </form>        }
+
+            </div>        .whatsapp-button:hover {
+
+        </div>            transform: translateY(-3px);
+
+                    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+
+        <div class="contact-info">        }
+
+            <div class="info-card">        .social-links {
+
+                <i class="fab fa-whatsapp"></i>            display: flex;
+
+                <h3>WhatsApp Direto</h3>            gap: 15px;
+
+                <p>Resposta rápida e atendimento personalizado</p>            margin-top: 20px;
+
+                <a href="https://wa.me/5512996182268" target="_blank" class="btn btn-primary whatsapp-btn">        }
+
+                    <i class="fab fa-whatsapp"></i> CHAMAR NO WHATSAPP        .social-link {
+
+                </a>            display: inline-flex;
+
+            </div>            align-items: center;
+
+                        justify-content: center;
+
+            <div class="info-card">            width: 50px;
+
+                <i class="fas fa-envelope"></i>            height: 50px;
+
+                <h3>E-mail Profissional</h3>            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+                <p>Para projetos e propostas detalhadas</p>            color: white;
+
+                <p style="margin-top: 15px;"><a href="mailto:contato@fullstack.dev">contato@fullstack.dev</a></p>            border-radius: 50%;
+
+            </div>            text-decoration: none;
+
+                        font-size: 24px;
+
+            <div class="info-card">            transition: all 0.3s ease;
+
+                <i class="fas fa-clock"></i>        }
+
+                <h3>Horário de Atendimento</h3>        .social-link:hover {
+
+                <p><strong>Segunda a Sexta:</strong> 9h às 18h<br>            transform: translateY(-5px);
+
+                <strong>Sábado:</strong> 9h às 13h<br>            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+
+                <strong>Urgências:</strong> 24/7 via WhatsApp</p>        }
+
+            </div>        @media (max-width: 768px) {
+
+                        .contact-section {
+
+            <div class="info-card">                grid-template-columns: 1fr;
+
+                <i class="fas fa-map-marker-alt"></i>            }
+
+                <h3>Localização</h3>            .page-title h1 {
+
+                <p>São Paulo - SP, Brasil<br>                font-size: 32px;
+
+                Atendimento remoto para todo o Brasil e exterior</p>            }
+
+            </div>            nav {
+
+        </div>                flex-direction: column;
+
+    </div>                gap: 15px;
+
+</section>            }
+
+        }
+
+<section class="container" style="text-align: center; padding: 80px 0;">    </style>
+
+    <div class="card" style="padding: 60px; max-width: 800px; margin: 0 auto;"></head>
+
+        <h2 style="font-size: 42px; margin-bottom: 25px;">⚡ RESPOSTA RÁPIDA GARANTIDA</h2><body>
+
+        <p style="font-size: 20px; color: var(--cor-texto-secundario); margin-bottom: 40px;">    <header>
+
+            Todas as mensagens são respondidas em até <strong style="color: var(--cor-principal);">2 horas úteis</strong>.<br>        <nav>
+
+            Para urgências, entre em contato via WhatsApp para resposta imediata!            <a href="/">Home</a>
+
+        </p>            <a href="/services">Serviços</a>
+
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">            <a href="/contact">Contato</a>
+
+            <div style="padding: 20px;">        </nav>
+
+                <div style="font-size: 48px; color: var(--cor-principal); font-weight: 900;">< 2h</div>    </header>
+
+                <div style="margin-top: 10px; color: var(--cor-texto-secundario);">Tempo de Resposta</div>    
+
+            </div>    <div class="container">
+
+            <div style="padding: 20px;">        <div class="page-title">
+
+                <div style="font-size: 48px; color: var(--cor-principal); font-weight: 900;">24/7</div>            <h1>📞 Entre em Contato</h1>
+
+                <div style="margin-top: 10px; color: var(--cor-texto-secundario);">Suporte WhatsApp</div>            <p>Vamos transformar sua ideia em realidade</p>
+
+            </div>        </div>
+
+            <div style="padding: 20px;">
+
+                <div style="font-size: 48px; color: var(--cor-principal); font-weight: 900;">100%</div>        <div class="contact-section">
+
+                <div style="margin-top: 10px; color: var(--cor-texto-secundario);">Taxa de Satisfação</div>            <div class="contact-form">
+
+            </div>                <h2>Envie uma Mensagem</h2>
+
+        </div>                <form method="POST" action="/contact">
+
+    </div>                    <div class="form-group">
+
+</section>                        <label for="name">Nome Completo</label>
+
+{% endblock %}                        <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" required placeholder="Descreva seu projeto ou dúvida..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Enviar Mensagem</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <h2>Informações de Contato</h2>
+                
+                <div class="info-item">
+                    <h3>📱 WhatsApp</h3>
+                    <p>Entre em contato direto pelo WhatsApp para respostas mais rápidas.</p>
+                    <a href="https://wa.me/5512996182268" class="whatsapp-button" target="_blank">
+                        💬 Chamar no WhatsApp
+                    </a>
+                </div>
+
+                <div class="info-item">
+                    <h3>⏰ Horário de Atendimento</h3>
+                    <p>Segunda a Sexta: 9h às 18h<br>
+                    Sábado: 9h às 13h<br>
+                    Resposta em até 24 horas</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>💼 Serviços</h3>
+                    <p>Desenvolvimento Web, Análise de Dados, Automação, IA Aplicada, Consultoria Técnica</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>🚀 Tecnologias</h3>
+                    <p>Python • C++ • Node.js • TypeScript • C# • JavaScript • React • Vue.js • Flask • SQL • MongoDB</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 15px; padding: 40px; margin: 30px 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+            <h2 style="color: #667eea; font-size: 32px; margin-bottom: 15px;">🎯 Tecnologia Simplificada. Resultados Extraordinários.</h2>
+            <p style="color: #666; font-size: 18px;">Transforme seu negócio com soluções completas e inovadoras</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends "admin/dashboard.html" %}
+
+{% block title %}Blog | Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <div class="container">
+        <h1>📝 GERENCIAR BLOG</h1>
+        <p style="font-size: 18px; color: var(--cor-texto-secundario);">Total: <strong style="color: var(--cor-principal);">{{ posts|length }}</strong> posts publicados</p>
+        <a href="{{ url_for('create_post') }}" class="btn btn-primary" style="margin-top: 20px;">
+            <i class="fas fa-plus"></i> NOVO POST
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="recent-list">
+        {% for post in posts %}
+        <div class="card recent-item">
+            <div class="recent-item-header">
+                <div>
+                    <div class="recent-item-title">{{ post.title }}</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="recent-item-date">
+                        <i class="fas fa-calendar"></i> {{ post.created_at.strftime('%d/%m/%Y') }}
+                    </div>
+                </div>
+            </div>
+            <div class="recent-item-content" style="margin-top: 15px;">
+                {{ post.content[:200]|striptags }}{% if post.content|length > 200 %}...{% endif %}
+            </div>
+            <div style="margin-top: 20px; display: flex; gap: 15px;">
+                <a href="{{ url_for('blog_post', post_id=post.id) }}" class="btn btn-secondary" style="padding: 12px 25px;" target="_blank">
+                    <i class="fas fa-eye"></i> Visualizar
+                </a>
+                <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-secondary" style="padding: 12px 25px;">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}" style="display: inline;">
+                    <button type="submit" class="btn btn-secondary logout-btn" style="padding: 12px 25px;" onclick="return confirm('Tem certeza que deseja excluir este post?')">
+                        <i class="fas fa-trash"></i> Excluir
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="card" style="padding: 80px; text-align: center;">
+            <i class="fas fa-pen" style="font-size: 80px; color: var(--cor-principal); opacity: 0.5; margin-bottom: 30px;"></i>
+            <h2 style="font-size: 32px; margin-bottom: 15px;">Nenhum Post Publicado</h2>
+            <p style="color: var(--cor-texto-secundario); font-size: 18px; margin-bottom: 30px;">Comece criando seu primeiro post</p>
+            <a href="{{ url_for('create_post') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> CRIAR PRIMEIRO POST
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

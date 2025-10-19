@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Blog | Insights e Tecnologia{% endblock %}
+
+{% block extra_css %}
+<style>
+    .blog-hero {
+        padding: 100px 0;
+        text-align: center;
+    }
+    
+    .blog-hero h1 {
+        font-size: 64px;
+        font-weight: 900;
+    }
+    
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 50px;
+        padding: 80px 0;
+    }
+    
+    .blog-card {
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .blog-image {
+        height: 250px;
+        background: linear-gradient(135deg, rgba(0, 217, 255, 0.3), rgba(0, 153, 204, 0.3));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 80px;
+        color: var(--cor-principal);
+    }
+    
+    .blog-content {
+        padding: 35px;
+    }
+    
+    .blog-content h3 {
+        font-size: 26px;
+        margin-bottom: 15px;
+        color: var(--cor-principal);
+    }
+    
+    .blog-meta {
+        color: var(--cor-texto-secundario);
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
+    .blog-content p {
+        color: var(--cor-texto-secundario);
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+    }
+    
+    @media (max-width: 768px) {
+        .blog-grid { grid-template-columns: 1fr; }
+        .blog-hero h1 { font-size: 42px; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="blog-hero">
+    <div class="container">
+        <h1>📝 BLOG</h1>
+        <p style="font-size: 24px; color: var(--cor-principal);">
+            Insights, tutoriais e as últimas tendências em tecnologia
+        </p>
+    </div>
+</section>
+
+<section class="container">
+    <div class="blog-grid">
+        {% for post in posts %}
+        <div class="card blog-card">
+            <div class="blog-image">
+                <i class="fas fa-blog"></i>
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <i class="fas fa-calendar"></i> {{ post.created_at.strftime('%d/%m/%Y') }}
+                    <i class="fas fa-user" style="margin-left: 20px;"></i> Admin
+                </div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}</p>
+                <a href="{{ url_for('blog_post', post_id=post.id) }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-right"></i> LER MAIS
+                </a>
+            </div>
+        </div>
+        {% else %}
+        <div class="card" style="grid-column: 1 / -1; padding: 80px; text-align: center;">
+            <i class="fas fa-pen" style="font-size: 80px; color: var(--cor-principal); margin-bottom: 30px;"></i>
+            <h2 style="font-size: 36px; margin-bottom: 20px;">Primeiro Post em Breve</h2>
+            <p style="font-size: 20px; color: var(--cor-texto-secundario);">
+                Conteúdo incrível está sendo preparado. Fique ligado!
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

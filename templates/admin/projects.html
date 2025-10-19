@@ -1,0 +1,57 @@
+{% extends "admin/dashboard.html" %}
+
+{% block title %}Portfólio | Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <div class="container">
+        <h1>🚀 GERENCIAR PORTFÓLIO</h1>
+        <p style="font-size: 18px; color: var(--cor-texto-secundario);">Total: <strong style="color: var(--cor-principal);">{{ projects|length }}</strong> projetos</p>
+        <a href="{{ url_for('create_project') }}" class="btn btn-primary" style="margin-top: 20px;">
+            <i class="fas fa-plus"></i> NOVO PROJETO
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px;">
+        {% for project in projects %}
+        <div class="card" style="padding: 35px;">
+            <div style="font-size: 60px; color: var(--cor-principal); margin-bottom: 20px; text-align: center;">
+                <i class="fas fa-{{ project.icon or 'code' }}"></i>
+            </div>
+            <h3 style="font-size: 24px; margin-bottom: 15px; text-align: center;">{{ project.title }}</h3>
+            <p style="color: var(--cor-texto-secundario); margin-bottom: 20px; text-align: center;">{{ project.description }}</p>
+            {% if project.tech_stack %}
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 25px;">
+                {% for tech in project.tech_stack.split(',') %}
+                <span style="background: rgba(0, 217, 255, 0.2); color: var(--cor-principal); padding: 6px 12px; border-radius: 15px; font-size: 13px; font-weight: 600;">
+                    {{ tech.strip() }}
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                <a href="{{ url_for('edit_project', project_id=project.id) }}" class="btn btn-secondary" style="padding: 12px 25px;">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <form method="POST" action="{{ url_for('delete_project', project_id=project.id) }}" style="display: inline;">
+                    <button type="submit" class="btn btn-secondary logout-btn" style="padding: 12px 25px;" onclick="return confirm('Tem certeza que deseja excluir este projeto?')">
+                        <i class="fas fa-trash"></i> Excluir
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="card" style="grid-column: 1 / -1; padding: 80px; text-align: center;">
+            <i class="fas fa-folder-open" style="font-size: 80px; color: var(--cor-principal); opacity: 0.5; margin-bottom: 30px;"></i>
+            <h2 style="font-size: 32px; margin-bottom: 15px;">Nenhum Projeto Adicionado</h2>
+            <p style="color: var(--cor-texto-secundario); font-size: 18px; margin-bottom: 30px;">Adicione projetos ao seu portfólio</p>
+            <a href="{{ url_for('create_project') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> ADICIONAR PRIMEIRO PROJETO
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
