@@ -3,11 +3,14 @@
 ## ✅ STATUS ATUAL
 
 ### SEU SITE ESTÁ FUNCIONANDO PERFEITAMENTE!
-**Acesso:** http://127.0.0.1:5000
+**Acesso (produção planejada):** https://luduranoficiall.com
 
-**Login Admin:** http://127.0.0.1:5000/login
-- Usuário: `admin`
-- Senha: `admin123` (ALTERE DEPOIS!)
+**Acesso temporário/local:** http://127.0.0.1:5000 (via `python app.py`)
+
+**Login CEO (rota secreta):** https://luduranoficiall.com/ceo-login-ultra-secreto-2025
+- Usuário: `CEO`
+- Senha: `CEO2025@Premium`
+> ✏️ Dica: altere a senha após configurar o domínio, via painel Render → Environment Variables ou diretamente no banco.
 
 ---
 
@@ -67,8 +70,8 @@ SiteStats - Analytics
 ```
 
 **Como usar:**
-1. Acesse: http://127.0.0.1:5000/login
-2. Login: `admin` / Senha: `admin123`
+1. Acesse: http://127.0.0.1:5000/ceo-login-ultra-secreto-2025 *(prod: https://luduranoficiall.com/ceo-login-ultra-secreto-2025)*
+2. Login: `CEO` / Senha: `CEO2025@Premium`
 3. Você terá acesso ao painel completo!
 
 ---
@@ -282,9 +285,9 @@ POST /agendar           - Criar agendamento
 
 ### Autenticação:
 ```
-GET  /login             - Página de login
-POST /login             - Fazer login
-GET  /logout            - Fazer logout
+GET  /ceo-login-ultra-secreto-2025   - Página de login do CEO
+POST /ceo-login-ultra-secreto-2025   - Fazer login
+GET  /logout                         - Fazer logout
 ```
 
 ### Admin (Requer Login):
@@ -385,15 +388,16 @@ python app.py
 Ou clique duplo em: `INICIAR_SITE.bat`
 
 ### 3. Acessar
-- **Site:** http://127.0.0.1:5000
-- **Admin:** http://127.0.0.1:5000/login
+- **Site local:** http://127.0.0.1:5000
+- **Produção:** https://luduranoficiall.com *(após configurar Render + DNS)*
+- **Login CEO (secreto):** http://127.0.0.1:5000/ceo-login-ultra-secreto-2025 *(ou `https://luduranoficiall.com/ceo-login-ultra-secreto-2025` em produção)*
 
-### 4. Login Admin
-- **Usuário:** admin
-- **Senha:** admin123
+### 4. Credenciais do CEO
+- **Usuário:** CEO
+- **Senha:** CEO2025@Premium
 
-### 5. ALTERAR SENHA ADMIN
-No código `app.py`, linha com `admin.set_password('admin123')`, altere para sua senha segura!
+### 5. ALTERAR SENHA
+No primeiro acesso ao painel, altere a senha executando um update no banco ou ajustando o script `init_db()` antes de publicar. Use uma senha forte e atualize a documentação.
 
 ---
 

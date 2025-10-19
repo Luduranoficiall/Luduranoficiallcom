@@ -8,20 +8,20 @@
 
 ### **URL PRINCIPAL:**
 ```
-https://clear-weeks-roll.loca.lt/
+https://luduranoficiall.com/
 ```
-> ⚠️ **Importante:** Este link ficará ativo enquanto os terminais "python app.py" e `npx localtunnel --port 5000` permanecerem abertos. Não feche as janelas do PowerShell até finalizar os atendimentos.
+> 🚧 **Em configuração:** aponte o domínio `luduranoficiall.com` para o serviço hospedado (Render). Enquanto o DNS propaga, você pode manter um link temporário gerado via `npx localtunnel --port 5000`.
 
 ### **PÁGINAS DISPONÍVEIS:**
 
 | Página | URL Completa | Descrição |
 |--------|--------------|-----------|
-| 🏠 **Home** | `https://clear-weeks-roll.loca.lt/` | Página inicial com suas credenciais Harvard & FIAP |
-| 💼 **Serviços** | `https://clear-weeks-roll.loca.lt/services` | Todos os serviços oferecidos com preços |
-| 📧 **Contato** | `https://clear-weeks-roll.loca.lt/contact` | Formulário de contato + WhatsApp |
-| 🚀 **Portfólio** | `https://clear-weeks-roll.loca.lt/portfolio` | Showcase dos seus projetos |
-| 📝 **Blog** | `https://clear-weeks-roll.loca.lt/blog` | Artigos e conteúdos técnicos |
-| 📅 **Agendar** | `https://clear-weeks-roll.loca.lt/schedule` | Sistema de agendamento de consultas |
+| 🏠 **Home** | `https://luduranoficiall.com/` | Página inicial com suas credenciais Harvard & FIAP |
+| 💼 **Serviços** | `https://luduranoficiall.com/services` | Todos os serviços oferecidos com preços |
+| 📧 **Contato** | `https://luduranoficiall.com/contact` | Formulário de contato + WhatsApp |
+| 🚀 **Portfólio** | `https://luduranoficiall.com/portfolio` | Showcase dos seus projetos |
+| 📝 **Blog** | `https://luduranoficiall.com/blog` | Artigos e conteúdos técnicos |
+| 📅 **Agendar** | `https://luduranoficiall.com/schedule` | Sistema de agendamento de consultas |
 
 ---
 
@@ -29,7 +29,7 @@ https://clear-weeks-roll.loca.lt/
 
 ### **⚠️ URL SECRETA DE LOGIN:**
 ```
-https://clear-weeks-roll.loca.lt/ceo-login-ultra-secreto-2025
+https://luduranoficiall.com/ceo-login-ultra-secreto-2025
 ```
 
 ### **🔑 SUAS CREDENCIAIS:**
@@ -40,14 +40,14 @@ https://clear-weeks-roll.loca.lt/ceo-login-ultra-secreto-2025
 
 | Página | URL Completa | Descrição |
 |--------|--------------|-----------|
-| 📊 **Dashboard** | `https://clear-weeks-roll.loca.lt/admin` | Visão geral com estatísticas |
-| 📨 **Mensagens** | `https://clear-weeks-roll.loca.lt/admin/contacts` | Gerenciar mensagens de contato |
-| 📝 **Blog** | `https://clear-weeks-roll.loca.lt/admin/blog` | Criar/editar/excluir posts |
-| ➕ **Novo Post** | `https://clear-weeks-roll.loca.lt/admin/blog/new` | Criar novo post no blog |
-| 🚀 **Projetos** | `https://clear-weeks-roll.loca.lt/admin/projects` | Gerenciar portfólio |
-| ➕ **Novo Projeto** | `https://clear-weeks-roll.loca.lt/admin/projects/new` | Adicionar novo projeto |
-| 📅 **Agendamentos** | `https://clear-weeks-roll.loca.lt/admin/appointments` | Gerenciar consultas agendadas |
-| 🚪 **Logout** | `https://clear-weeks-roll.loca.lt/logout` | Sair do painel |
+| 📊 **Dashboard** | `https://luduranoficiall.com/admin` | Visão geral com estatísticas |
+| 📨 **Mensagens** | `https://luduranoficiall.com/admin/contacts` | Gerenciar mensagens de contato |
+| 📝 **Blog** | `https://luduranoficiall.com/admin/blog` | Criar/editar/excluir posts |
+| ➕ **Novo Post** | `https://luduranoficiall.com/admin/blog/new` | Criar novo post no blog |
+| 🚀 **Projetos** | `https://luduranoficiall.com/admin/projects` | Gerenciar portfólio |
+| ➕ **Novo Projeto** | `https://luduranoficiall.com/admin/projects/new` | Adicionar novo projeto |
+| 📅 **Agendamentos** | `https://luduranoficiall.com/admin/appointments` | Gerenciar consultas agendadas |
+| 🚪 **Logout** | `https://luduranoficiall.com/logout` | Sair do painel |
 
 ---
 
