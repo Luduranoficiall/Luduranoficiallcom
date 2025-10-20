@@ -1,243 +1,113 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard Admin | Painel de Controle{% endblock %}
+{% block title %}Painel Administrativo | Controle Geral{% endblock %}
 
-{% block extra_css %}
-<style>
-    .admin-header {
-        background: var(--cor-fundo-card);
-        border-bottom: 2px solid var(--cor-principal);
-        padding: 30px 0;
-        margin-bottom: 50px;
-    }
-    
-    .admin-header h1 {
-        font-size: 42px;
-        margin-bottom: 10px;
-    }
-    
-    .admin-nav {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-top: 30px;
-    }
-    
-    .admin-nav a {
-        padding: 15px 30px;
-        background: var(--cor-fundo);
-        border: 2px solid rgba(0, 217, 255, 0.3);
-        border-radius: 10px;
-        color: var(--cor-principal);
-        text-decoration: none;
-        font-weight: 700;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .admin-nav a:hover,
-    .admin-nav a.active {
-        background: rgba(0, 217, 255, 0.1);
-        border-color: var(--cor-principal);
-        transform: translateY(-3px);
-    }
-    
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        margin-bottom: 60px;
-    }
-    
-    .stat-card {
-        padding: 40px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .stat-icon {
-        font-size: 60px;
-        color: var(--cor-principal);
-        margin-bottom: 20px;
-        opacity: 0.8;
-    }
-    
-    .stat-number {
-        font-size: 56px;
-        font-weight: 900;
-        color: var(--cor-principal);
-        text-shadow: 0 0 20px var(--cor-principal);
-        margin-bottom: 15px;
-    }
-    
-    .stat-label {
-        font-size: 18px;
-        color: var(--cor-texto-secundario);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 600;
-    }
-    
-    .recent-section {
-        margin-bottom: 60px;
-    }
-    
-    .recent-section h2 {
-        font-size: 32px;
-        margin-bottom: 30px;
-        padding-bottom: 15px;
-        border-bottom: 2px solid rgba(0, 217, 255, 0.3);
-    }
-    
-    .recent-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .recent-item {
-        padding: 30px;
-        background: var(--cor-fundo-card);
-        border: 2px solid rgba(0, 217, 255, 0.2);
-        border-radius: 15px;
-        transition: all 0.3s ease;
-    }
-    
-    .recent-item:hover {
-        border-color: var(--cor-principal);
-        transform: translateX(10px);
-    }
-    
-    .recent-item-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-        margin-bottom: 15px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    
-    .recent-item-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--cor-principal);
-    }
-    
-    .recent-item-date {
-        color: var(--cor-texto-secundario);
-        font-size: 14px;
-    }
-    
-    .recent-item-content {
-        color: var(--cor-texto-secundario);
-        line-height: 1.6;
-    }
-    
-    .badge {
-        padding: 8px 15px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 700;
-        text-transform: uppercase;
-    }
-    
-    .badge-new {
-        background: rgba(0, 217, 255, 0.2);
-        color: var(--cor-principal);
-    }
-    
-    .badge-pending {
-        background: rgba(255, 193, 7, 0.2);
-        color: #ffc107;
-    }
-    
-    .logout-btn {
-        background: #ff0055 !important;
-        border-color: #ff0055 !important;
-    }
-    
-    .logout-btn:hover {
-        box-shadow: 0 0 20px rgba(255, 0, 85, 0.5) !important;
-    }
-</style>
-{% endblock %}
+{% block extra_css %}{% endblock %}
 
 {% block content %}
 <div class="admin-header">
     <div class="container">
-        <h1>⚡ PAINEL ADMINISTRATIVO</h1>
-        <p style="font-size: 18px; color: var(--cor-texto-secundario);">Bem-vindo, <strong style="color: var(--cor-principal);">{{ current_user.username }}</strong></p>
-        
+        {% block admin_header %}
+    <h1>⚡ Painel administrativo</h1>
+    <p class="admin-subtitle">Bem-vindo, <strong>{{ current_user.username }}</strong></p>
+        {% endblock %}
+
         <div class="admin-nav">
-            <a href="{{ url_for('admin_dashboard') }}" class="active"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="{{ url_for('admin_contacts') }}"><i class="fas fa-envelope"></i> Mensagens</a>
-            <a href="{{ url_for('admin_blog') }}"><i class="fas fa-blog"></i> Blog</a>
-            <a href="{{ url_for('admin_projects') }}"><i class="fas fa-folder"></i> Projetos</a>
-            <a href="{{ url_for('admin_appointments') }}"><i class="fas fa-calendar"></i> Agendamentos</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}"><i class="fas fa-home"></i> Painel</a>
+            <a href="{{ url_for('admin_contacts') }}" class="{% if request.endpoint == 'admin_contacts' %}active{% endif %}"><i class="fas fa-envelope"></i> Mensagens</a>
+            <a href="{{ url_for('admin_blog') }}" class="{% if request.endpoint in ('admin_blog', 'create_post', 'edit_post') %}active{% endif %}"><i class="fas fa-blog"></i> Blog</a>
+            <a href="{{ url_for('admin_projects') }}" class="{% if request.endpoint in ('admin_projects', 'create_project', 'edit_project') %}active{% endif %}"><i class="fas fa-folder"></i> Projetos</a>
+            <a href="{{ url_for('admin_appointments') }}" class="{% if request.endpoint == 'admin_appointments' %}active{% endif %}"><i class="fas fa-calendar"></i> Agendamentos</a>
             <a href="{{ url_for('logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
         </div>
+
+        {% block admin_header_actions %}{% endblock %}
     </div>
 </div>
 
 <div class="container">
-    <div class="stats-grid">
-        <div class="card stat-card">
+    {% block admin_content %}
+    <div class="admin-stats-grid">
+        <div class="card stat-card admin">
             <div class="stat-icon"><i class="fas fa-envelope"></i></div>
             <div class="stat-number">{{ stats.total_contacts }}</div>
             <div class="stat-label">Total de Mensagens</div>
         </div>
         
-        <div class="card stat-card">
+        <div class="card stat-card admin">
             <div class="stat-icon"><i class="fas fa-envelope-open"></i></div>
             <div class="stat-number">{{ stats.unread_contacts }}</div>
             <div class="stat-label">Não Lidas</div>
         </div>
         
-        <div class="card stat-card">
+        <div class="card stat-card admin">
             <div class="stat-icon"><i class="fas fa-blog"></i></div>
             <div class="stat-number">{{ stats.total_posts }}</div>
             <div class="stat-label">Posts Publicados</div>
         </div>
         
-        <div class="card stat-card">
+        <div class="card stat-card admin">
             <div class="stat-icon"><i class="fas fa-folder"></i></div>
             <div class="stat-number">{{ stats.total_projects }}</div>
             <div class="stat-label">Projetos</div>
         </div>
         
-        <div class="card stat-card">
+        <div class="card stat-card admin">
             <div class="stat-icon"><i class="fas fa-calendar"></i></div>
             <div class="stat-number">{{ stats.pending_appointments }}</div>
             <div class="stat-label">Agendamentos Pendentes</div>
         </div>
         
-        <div class="card stat-card">
+        <div class="card stat-card admin">
             <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
             <div class="stat-number">{{ stats.confirmed_appointments }}</div>
             <div class="stat-label">Agendamentos Confirmados</div>
         </div>
     </div>
+
+    <div class="analytics-section">
+        <div class="analytics-grid">
+            <div class="card chart-card">
+                <h2>📈 Evolução das interações</h2>
+                <p class="text-muted">Visão consolidada dos últimos 14 dias com tráfego, contatos, agendamentos e comentários.</p>
+                <canvas id="metricsChart" height="220"></canvas>
+            </div>
+            <div class="card popular-card">
+                <h2>🔥 Posts em alta</h2>
+                <ul class="popular-list">
+                    {% for post, comment_total in popular_posts %}
+                    <li class="popular-item">
+                        <div>
+                            <strong>{{ post.title }}</strong>
+                            <span><i class="fas fa-calendar"></i> {{ post.created_at.strftime('%d/%m/%Y') }}</span>
+                        </div>
+                        <span class="popular-count"><i class="fas fa-comments"></i> {{ comment_total }}</span>
+                    </li>
+                    {% else %}
+                    <li class="text-muted">Sem dados suficientes ainda. Publique e incentive comentários.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
     
     <div class="recent-section">
-        <h2>📨 Mensagens Recentes</h2>
+        <h2>📨 Mensagens recentes</h2>
         <div class="recent-list">
             {% for contact in recent_contacts %}
             <div class="card recent-item">
                 <div class="recent-item-header">
                     <div>
                         <div class="recent-item-title">{{ contact.name }}</div>
-                        <div style="color: var(--cor-principal); font-size: 14px; margin-top: 5px;">
+                        <div class="recent-item-contact">
                             <i class="fas fa-envelope"></i> {{ contact.email }}
                         </div>
                     </div>
-                    <div style="text-align: right;">
+                    <div class="recent-item-meta">
                         {% if not contact.read %}
-                        <span class="badge badge-new">NOVA</span>
+                        <span class="badge badge-new status-label">Nova</span>
                         {% endif %}
-                        <div class="recent-item-date" style="margin-top: 10px;">
+                        <div class="recent-item-date">
                             <i class="fas fa-clock"></i> {{ contact.created_at.strftime('%d/%m/%Y %H:%M') }}
                         </div>
                     </div>
@@ -245,32 +115,40 @@
                 <div class="recent-item-content">{{ contact.message[:150] }}{% if contact.message|length > 150 %}...{% endif %}</div>
             </div>
             {% else %}
-            <div class="card" style="padding: 60px; text-align: center;">
-                <i class="fas fa-inbox" style="font-size: 60px; color: var(--cor-principal); opacity: 0.5; margin-bottom: 20px;"></i>
-                <p style="color: var(--cor-texto-secundario); font-size: 18px;">Nenhuma mensagem ainda</p>
+            <div class="card empty-card">
+                <i class="fas fa-inbox"></i>
+                <p>Nenhuma mensagem ainda</p>
             </div>
             {% endfor %}
         </div>
-        <a href="{{ url_for('admin_contacts') }}" class="btn btn-primary" style="margin-top: 30px;">
-            <i class="fas fa-arrow-right"></i> VER TODAS AS MENSAGENS
-        </a>
+        <div class="action-row">
+            <a href="{{ url_for('admin_contacts') }}" class="btn btn-primary">
+                <i class="fas fa-arrow-right"></i> Ver todas as mensagens
+            </a>
+        </div>
     </div>
     
     <div class="recent-section">
-        <h2>📅 Próximos Agendamentos</h2>
+        <h2>📅 Próximos agendamentos</h2>
         <div class="recent-list">
+            {% set status_labels = {
+                'pending': 'Pendente',
+                'confirmed': 'Confirmado',
+                'cancelled': 'Cancelado',
+                'canceled': 'Cancelado'
+            } %}
             {% for appointment in recent_appointments %}
             <div class="card recent-item">
                 <div class="recent-item-header">
                     <div>
                         <div class="recent-item-title">{{ appointment.name }}</div>
-                        <div style="color: var(--cor-principal); font-size: 14px; margin-top: 5px;">
+                        <div class="recent-item-contact">
                             <i class="fas fa-phone"></i> {{ appointment.phone }}
                         </div>
                     </div>
-                    <div style="text-align: right;">
-                        <span class="badge badge-{{ appointment.status }}">{{ appointment.status.upper() }}</span>
-                        <div class="recent-item-date" style="margin-top: 10px;">
+                    <div class="recent-item-meta">
+                        <span class="badge badge-{{ appointment.status }} status-label">{{ status_labels.get(appointment.status, appointment.status)|upper }}</span>
+                        <div class="recent-item-date">
                             <i class="fas fa-calendar"></i> {{ appointment.date.strftime('%d/%m/%Y') }} às {{ appointment.time }}
                         </div>
                     </div>
@@ -278,15 +156,118 @@
                 <div class="recent-item-content">{{ appointment.message[:150] }}{% if appointment.message|length > 150 %}...{% endif %}</div>
             </div>
             {% else %}
-            <div class="card" style="padding: 60px; text-align: center;">
-                <i class="fas fa-calendar-times" style="font-size: 60px; color: var(--cor-principal); opacity: 0.5; margin-bottom: 20px;"></i>
-                <p style="color: var(--cor-texto-secundario); font-size: 18px;">Nenhum agendamento pendente</p>
+            <div class="card empty-card">
+                <i class="fas fa-calendar-times"></i>
+                <p>Nenhum agendamento pendente</p>
             </div>
             {% endfor %}
         </div>
-        <a href="{{ url_for('admin_appointments') }}" class="btn btn-primary" style="margin-top: 30px;">
-            <i class="fas fa-arrow-right"></i> GERENCIAR AGENDAMENTOS
-        </a>
+        <div class="action-row">
+            <a href="{{ url_for('admin_appointments') }}" class="btn btn-primary">
+                <i class="fas fa-arrow-right"></i> Gerenciar agendamentos
+            </a>
+        </div>
     </div>
+    {% endblock %}
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ super() }}
+{% if chart_labels is defined %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+    const metricsCanvas = document.getElementById('metricsChart');
+    if (metricsCanvas) {
+        const metricsChart = new Chart(metricsCanvas, {
+            type: 'line',
+            data: {
+                labels: {{ chart_labels|default('[]')|safe }},
+                datasets: [
+                    {
+                        label: 'Visualizações',
+                        data: {{ chart_page_views|default('[]')|safe }},
+                        borderColor: '#00d9ff',
+                        backgroundColor: 'rgba(0, 217, 255, 0.15)',
+                        tension: 0.35,
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        fill: true
+                    },
+                    {
+                        label: 'Contatos',
+                        data: {{ chart_contacts|default('[]')|safe }},
+                        borderColor: '#ff7f50',
+                        backgroundColor: 'rgba(255, 127, 80, 0.15)',
+                        tension: 0.35,
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        fill: true
+                    },
+                    {
+                        label: 'Agendamentos',
+                        data: {{ chart_appointments|default('[]')|safe }},
+                        borderColor: '#9b51ff',
+                        backgroundColor: 'rgba(155, 81, 255, 0.15)',
+                        tension: 0.35,
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        fill: true
+                    },
+                    {
+                        label: 'Comentários',
+                        data: {{ chart_comments|default('[]')|safe }},
+                        borderColor: '#00ff88',
+                        backgroundColor: 'rgba(0, 255, 136, 0.15)',
+                        tension: 0.35,
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: getComputedStyle(document.body).getPropertyValue('--cor-texto') || '#fff'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: getComputedStyle(document.body).getPropertyValue('--cor-texto-secundario') || '#b0b0b0'
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.05)'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: getComputedStyle(document.body).getPropertyValue('--cor-texto-secundario') || '#b0b0b0',
+                            precision: 0
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.05)'
+                        }
+                    }
+                }
+            }
+        });
+
+        const themeObserver = new MutationObserver(() => {
+            metricsChart.options.plugins.legend.labels.color = getComputedStyle(document.body).getPropertyValue('--cor-texto');
+            metricsChart.options.scales.x.ticks.color = getComputedStyle(document.body).getPropertyValue('--cor-texto-secundario');
+            metricsChart.options.scales.y.ticks.color = getComputedStyle(document.body).getPropertyValue('--cor-texto-secundario');
+            metricsChart.update();
+        });
+
+        themeObserver.observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
+    }
+</script>
+{% endif %}
 {% endblock %}

@@ -53,6 +53,18 @@ git push -u origin main
 | A    | @         | IP fornecido pela Render | 300 |
 | CNAME| www       | `your-service.onrender.com` | 300 |
 
+### Se o domínio está na HostGator (ns00040.hostgator.com.br / ns00041.hostgator.com.br)
+
+1. Acesse o **Portal do Cliente HostGator** e clique em **Entrar > Portal do Cliente**.
+2. No menu lateral, abra **Domínios > Zone Editor (Editor de Zona DNS)**.
+3. Escolha o domínio `luduranoficiall.com`.
+4. Clique em **+ Add Record** e cadastre:
+   - **Type**: `A` – **Name**: `@` – **Record**: IP que a Render mostrou – **TTL**: `300`.
+   - **Type**: `CNAME` – **Name**: `www` – **Record**: `your-service.onrender.com` – **TTL**: `300`.
+5. Se existirem registros A ou CNAME antigos para `@` ou `www`, remova-os para evitar conflitos.
+6. Salve as alterações e aguarde a propagação (HostGator costuma levar entre 5 e 30 minutos).
+7. Depois da propagação, volte na Render e clique em **Verify** para validar cada domínio.
+
 5. Aguarde a propagação (pode levar até 30 minutos). Depois clique em **Verify** na Render.
 6. Quando o status mudar para **Verified**, seu site estará acessível em `https://luduranoficiall.com` e `https://www.luduranoficiall.com`.
 

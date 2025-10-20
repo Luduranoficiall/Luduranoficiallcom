@@ -2,104 +2,95 @@
 
 {% block title %}{{ post.title }} | Blog{% endblock %}
 
-{% block extra_css %}
-<style>
-    .post-hero {
-        padding: 80px 0 40px;
-        text-align: center;
-    }
-    
-    .post-hero h1 {
-        font-size: 56px;
-        font-weight: 900;
-        margin-bottom: 30px;
-        line-height: 1.2;
-    }
-    
-    .post-meta {
-        font-size: 18px;
-        color: var(--cor-texto-secundario);
-        margin-bottom: 50px;
-    }
-    
-    .post-content {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 60px 0;
-    }
-    
-    .post-content p {
-        font-size: 20px;
-        line-height: 1.8;
-        color: var(--cor-texto);
-        margin-bottom: 30px;
-    }
-    
-    .post-content h2 {
-        font-size: 36px;
-        margin: 50px 0 25px;
-        color: var(--cor-principal);
-    }
-    
-    .post-content h3 {
-        font-size: 28px;
-        margin: 40px 0 20px;
-        color: var(--cor-principal);
-    }
-    
-    .back-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 30px;
-        color: var(--cor-principal);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 18px;
-    }
-    
-    .back-link:hover {
-        text-shadow: 0 0 10px var(--cor-principal);
-    }
-</style>
-{% endblock %}
+{% block extra_css %}{% endblock %}
 
 {% block content %}
-<section class="container">
-    <a href="{{ url_for('blog') }}" class="back-link">
-        <i class="fas fa-arrow-left"></i> VOLTAR AO BLOG
-    </a>
+<section class="section compact">
+    <div class="container">
+        <a href="{{ url_for('blog') }}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Voltar ao blog
+        </a>
+    </div>
 </section>
 
 <section class="post-hero">
     <div class="container">
         <h1>{{ post.title }}</h1>
         <div class="post-meta">
-            <i class="fas fa-calendar"></i> {{ post.created_at.strftime('%d de %B de %Y') }}
-            <span style="margin: 0 20px;">•</span>
-            <i class="fas fa-user"></i> Admin
+            <span><i class="fas fa-calendar"></i> {{ post.created_at|data_extenso_pt }}</span>
+            <span class="separator-dot">•</span>
+            <span><i class="fas fa-user"></i> Admin</span>
         </div>
     </div>
 </section>
 
-<section class="container">
-    <div class="card post-content">
-        {{ post.content|safe }}
+<section class="section">
+    <div class="container">
+        <div class="card post-content">
+            {{ post.content|safe }}
+        </div>
     </div>
 </section>
 
-<section class="container" style="text-align: center; padding: 60px 0;">
-    <h2 style="font-size: 42px; margin-bottom: 30px;">💬 Gostou do conteúdo?</h2>
-    <p style="font-size: 20px; color: var(--cor-texto-secundario); margin-bottom: 40px;">
-        Entre em contato para discutir seu projeto ou agendar uma consulta
-    </p>
-    <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
-        <a href="{{ url_for('contact') }}" class="btn btn-primary">
-            <i class="fas fa-envelope"></i> CONTATO
-        </a>
-        <a href="{{ url_for('schedule') }}" class="btn btn-secondary">
-            <i class="fas fa-calendar"></i> AGENDAR
-        </a>
+<section class="section compact" id="comentarios">
+    <div class="container">
+        <div class="post-cta">
+            <h2>Comentários</h2>
+            <p class="text-muted">Compartilhe suas ideias ou dúvidas sobre este conteúdo.</p>
+        </div>
+
+        <div class="comments-section">
+            {% for comment in comments %}
+            <div class="comment-card">
+                <h4>{{ comment.name }}</h4>
+                <span class="text-muted"><i class="fas fa-calendar"></i> {{ comment.created_at|data_hora_pt }}</span>
+                <p>{{ comment.message }}</p>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-comments"></i>
+                <p>Ainda não há comentários. Seja o primeiro a iniciar a conversa!</p>
+            </div>
+            {% endfor %}
+
+            <div class="comment-form">
+                <h3>Deixe seu comentário</h3>
+                <form method="POST" action="{{ url_for('add_comment', post_id=post.id) }}">
+                    <div class="form-group">
+                        <label for="comment-name">Seu nome</label>
+                        <input type="text" id="comment-name" name="name" placeholder="Digite seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-email">Seu e-mail</label>
+                        <input type="email" id="comment-email" name="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-message">Mensagem</label>
+                        <textarea id="comment-message" name="message" placeholder="Compartilhe sua opinião ou dúvida" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Enviar comentário
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section compact">
+    <div class="container">
+        <div class="post-cta">
+            <h2>💬 Gostou do conteúdo?</h2>
+            <p class="text-muted">Entre em contato para discutir seu projeto ou agendar uma consulta personalizada.</p>
+            <div class="hero-actions center">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Contato
+                </a>
+                <a href="{{ url_for('schedule') }}" class="btn btn-secondary">
+                    <i class="fas fa-calendar"></i> Agendar
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

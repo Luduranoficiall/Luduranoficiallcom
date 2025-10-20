@@ -2,191 +2,58 @@
 
 {% block title %}Agendar Consulta | Full-Stack Elite{% endblock %}
 
-{% block extra_css %}
-<style>
-    .schedule-hero {
-        padding: 80px 0 60px;
-        text-align: center;
-    }
-    
-    .schedule-hero h1 {
-        font-size: 56px;
-        font-weight: 900;
-    }
-    
-    .schedule-container {
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 60px 0;
-    }
-    
-    .schedule-form {
-        background: var(--cor-fundo-card);
-        border: 2px solid rgba(0, 217, 255, 0.3);
-        border-radius: 20px;
-        padding: 50px;
-    }
-    
-    .form-group {
-        margin-bottom: 30px;
-    }
-    
-    .form-group label {
-        display: block;
-        margin-bottom: 10px;
-        color: var(--cor-principal);
-        font-weight: 700;
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 18px 25px;
-        background: var(--cor-fundo);
-        border: 2px solid rgba(0, 217, 255, 0.3);
-        border-radius: 10px;
-        color: var(--cor-texto);
-        font-size: 16px;
-        font-family: inherit;
-        transition: all 0.3s ease;
-    }
-    
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-        outline: none;
-        border-color: var(--cor-principal);
-        box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
-    }
-    
-    .form-group textarea {
-        resize: vertical;
-        min-height: 120px;
-    }
-    
-    .time-slots {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin-top: 15px;
-    }
-    
-    .time-slot {
-        padding: 15px;
-        background: var(--cor-fundo);
-        border: 2px solid rgba(0, 217, 255, 0.3);
-        border-radius: 10px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        color: var(--cor-texto);
-        font-weight: 600;
-    }
-    
-    .time-slot:hover {
-        border-color: var(--cor-principal);
-        background: rgba(0, 217, 255, 0.1);
-    }
-    
-    .time-slot.selected {
-        background: var(--cor-principal);
-        color: #000;
-        border-color: var(--cor-principal);
-    }
-    
-    .benefits {
-        margin: 50px 0;
-        padding: 40px;
-        background: rgba(0, 217, 255, 0.05);
-        border-radius: 15px;
-        border: 2px solid rgba(0, 217, 255, 0.2);
-    }
-    
-    .benefits h3 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: var(--cor-principal);
-    }
-    
-    .benefits ul {
-        list-style: none;
-    }
-    
-    .benefits li {
-        padding: 15px 0;
-        color: var(--cor-texto);
-        font-size: 16px;
-        border-bottom: 1px solid rgba(0, 217, 255, 0.1);
-    }
-    
-    .benefits li:before {
-        content: '✓';
-        color: var(--cor-principal);
-        font-weight: bold;
-        margin-right: 15px;
-        font-size: 20px;
-    }
-    
-    @media (max-width: 768px) {
-        .time-slots { grid-template-columns: repeat(2, 1fr); }
-        .schedule-hero h1 { font-size: 42px; }
-    }
-</style>
-{% endblock %}
+{% block extra_css %}{% endblock %}
 
 {% block content %}
-<section class="schedule-hero">
+<section class="page-hero">
     <div class="container">
-        <h1>📅 AGENDAR CONSULTA</h1>
-        <p style="font-size: 22px; color: var(--cor-principal);">
-            Consultoria especializada para transformar seu projeto
-        </p>
+        <span class="badge"><i class="fas fa-calendar-check"></i> agenda estratégica</span>
+        <h1>Agendar consultoria especializada</h1>
+        <p class="page-subtitle">Consultoria premium de 60 minutos para destravar o roadmap ideal do seu projeto.</p>
     </div>
 </section>
 
-<section class="container">
-    <div class="schedule-container">
-        <div class="benefits">
-            <h3>✨ O que você ganha nesta consulta:</h3>
-            <ul>
-                <li>Análise completa do seu projeto ou ideia</li>
-                <li>Recomendações de tecnologias ideais</li>
-                <li>Estimativa de tempo e investimento</li>
-                <li>Roadmap detalhado de desenvolvimento</li>
-                <li>Identificação de desafios técnicos</li>
-                <li>Sessão de 1 hora com especialista Harvard/FIAP</li>
-            </ul>
-        </div>
-        
-        <div class="schedule-form">
-            <h2 style="margin-bottom: 30px; font-size: 32px; text-align: center;">Preencha os Dados</h2>
+<section class="section">
+    <div class="container">
+        <div class="schedule-wrapper">
+            <div class="benefits-card">
+                <span class="badge"><i class="fas fa-star"></i> o que você recebe</span>
+                <h3>Resultados da sessão</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Análise completa do seu projeto ou ideia</li>
+                    <li><i class="fas fa-check"></i> Recomendações de tecnologias ideais</li>
+                    <li><i class="fas fa-check"></i> Estimativa de tempo e investimento</li>
+                    <li><i class="fas fa-check"></i> Roadmap detalhado de desenvolvimento</li>
+                    <li><i class="fas fa-check"></i> Identificação de desafios técnicos prioritários</li>
+                    <li><i class="fas fa-check"></i> Sessão exclusiva de 1 hora com especialista Harvard/FIAP</li>
+                </ul>
+            </div>
+            
+            <div class="form-card">
+                <h2>Preencha os dados</h2>
             <form method="POST" action="{{ url_for('schedule') }}">
                 <div class="form-group">
-                    <label for="name">SEU NOME COMPLETO</label>
+                    <label for="name">Seu nome completo</label>
                     <input type="text" id="name" name="name" placeholder="Nome completo" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">SEU E-MAIL</label>
+                    <label for="email">Seu e-mail</label>
                     <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="phone">SEU TELEFONE/WHATSAPP</label>
+                    <label for="phone">Telefone ou WhatsApp</label>
                     <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="date">DATA PREFERIDA</label>
+                    <label for="date">Data preferida</label>
                     <input type="date" id="date" name="date" required min="{{ today }}">
                 </div>
                 
                 <div class="form-group">
-                    <label>HORÁRIO PREFERIDO</label>
+                    <label>Horário preferido</label>
                     <div class="time-slots">
                         <div class="time-slot" onclick="selectTime(this, '09:00')">09:00</div>
                         <div class="time-slot" onclick="selectTime(this, '10:00')">10:00</div>
@@ -199,24 +66,25 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">DESCREVA SEU PROJETO/NECESSIDADE</label>
+                    <label for="message">Descreva seu projeto ou necessidade</label>
                     <textarea id="message" name="message" placeholder="Conte-me sobre o que você precisa..." required></textarea>
                 </div>
                 
-                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 18px; padding: 20px;">
-                    <i class="fas fa-calendar-check"></i> CONFIRMAR AGENDAMENTO
+                <button type="submit" class="btn btn-primary full-width">
+                    <i class="fas fa-calendar-check"></i> Confirmar agendamento
                 </button>
             </form>
-        </div>
-        
-        <div style="text-align: center; margin-top: 50px; padding: 40px; background: rgba(0, 217, 255, 0.05); border-radius: 15px;">
-            <h3 style="font-size: 28px; margin-bottom: 20px; color: var(--cor-principal);">⚡ Atendimento Imediato?</h3>
-            <p style="font-size: 18px; color: var(--cor-texto-secundario); margin-bottom: 30px;">
-                Precisa falar agora? Entre em contato via WhatsApp para atendimento instantâneo
-            </p>
-            <a href="https://wa.me/5512996182268" target="_blank" class="btn btn-primary" style="background: #25D366; border-color: #25D366;">
-                <i class="fab fa-whatsapp"></i> WHATSAPP DIRETO
-            </a>
+            </div>
+
+            <div class="schedule-alert">
+                <h3>⚡ Atendimento imediato?</h3>
+                <p class="text-muted">Precisa falar agora? Entre em contato via WhatsApp para atendimento instantâneo.</p>
+                <div class="hero-actions center">
+                    <a href="https://wa.me/5512996182268" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp direto
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
